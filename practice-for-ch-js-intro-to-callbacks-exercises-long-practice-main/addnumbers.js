@@ -10,17 +10,15 @@ function addNumbers(sum, numsLeft, completionCallback) {
     if (numsLeft == 0) {
         completionCallback(sum)
         reader.close();
-        return;
+    }else{
+        reader.question("Pick another number to add", function (answer) {
+            sum += parseInt(answer);
+            numsLeft -= 1;
+            console.log(`sum so far is ${sum}, numsleft is ${numsLeft}`);
+            addNumbers(sum, numsLeft, completionCallback);
+        })
     }
-
-    reader.question("Pick another number to add", function (answer) {
-        sum += parseInt(answer);
-        numsLeft -= 1;
-        console.log(`sum so far is ${sum}, numsleft is ${numsLeft}`);
-        addNumbers(sum, numsLeft, completionCallback);
-    })
     
-
 
 }
 
